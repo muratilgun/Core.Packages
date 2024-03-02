@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Application.Request;
+namespace Core.Application.Requests;
 public class PageRequest
 {
     public int PageIndex { get; set; }
