@@ -2,6 +2,7 @@
 using Core.CrossCuttingConcerns.Exceptions.HttpProblemDetails;
 using Core.CrossCuttingConcerns.Exceptions.Types;
 using Microsoft.AspNetCore.Http;
+using ValidationProblemDetails = Core.CrossCuttingConcerns.Exceptions.HttpProblemDetails.ValidationProblemDetails;
 
 namespace Core.CrossCuttingConcerns.Exceptions.Handlers;
 public class HttpExceptionHandler : ExceptionHandler
@@ -23,6 +24,13 @@ public class HttpExceptionHandler : ExceptionHandler
     {
         Response.StatusCode = StatusCodes.Status500InternalServerError;
         string details = new BusinessProblemDetails(exception.Message).AsJson();
+        return Response.WriteAsync(details);
+    }
+
+    protected override Task HandleException(ValidationException validationException)
+    {
+        Response.StatusCode = StatusCodes.Status400BadRequest;
+        string details = new ValidationProblemDetails(validationException.Errors).AsJson();
         return Response.WriteAsync(details);
     }
 }
