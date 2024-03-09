@@ -2,18 +2,10 @@
 using Core.Persistence.Paging;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.EntityFrameworkCore.Query;
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Core.Persistence.Repositories;
 public class EfRepositoryBase<TEntity, TEntityId, TContext>

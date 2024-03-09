@@ -17,20 +17,20 @@ public class RequestValidationBehavior<TRequest, TResponse> : IPipelineBehavior<
     public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {
         ValidationContext<object> context = new(request);
-        
+
         IEnumerable<ValidationExceptionModel> errors = _validators
             .Select(v => v.Validate(context))
             .SelectMany(result => result.Errors)
             .Where(failure => failure != null)
             .GroupBy(
                 keySelector: failure => failure.PropertyName,
-                resultSelector: (propertyName,errors)=> 
-                new ValidationExceptionModel { Property = propertyName, Errors = errors.Select(e=> e.ErrorMessage)}).ToList();
-        
+                resultSelector: (propertyName, errors) =>
+                new ValidationExceptionModel { Property = propertyName, Errors = errors.Select(e => e.ErrorMessage) }).ToList();
+
         if (errors.Any())
             throw new ValidationException(errors);
-        
-        TResponse response =await next();
+
+        TResponse response = await next();
         return response;
     }
 }
