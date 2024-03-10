@@ -2,7 +2,7 @@
 public class LogParameter
 {
     public string Name { get; set; }
-    public string Value { get; set; }
+    public object Value { get; set; }
     public string Type { get; set; }
 
     public LogParameter()
@@ -12,7 +12,7 @@ public class LogParameter
         Type = string.Empty;
     }
 
-    public LogParameter(string name, string value, string type)
+    public LogParameter(string name, object value, string type)
     {
         Name = name;
         Value = value;
