@@ -3,7 +3,6 @@ using Core.CrossCuttingConcerns.Logging;
 using Core.CrossCuttingConcerns.Serilog;
 using Microsoft.AspNetCore.Http;
 using System.Text.Json;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Core.CrossCuttingConcerns.Exceptions;
 public class ExceptionMiddleware
@@ -48,7 +47,7 @@ public class ExceptionMiddleware
             Parameters = logParameters,
             User = _httpContextAccessor.HttpContext.User.Identity?.Name ?? "Anonymous"
         };
-         _loggerServiceBase.Error(JsonSerializer.Serialize(logDetail));
+        _loggerServiceBase.Error(JsonSerializer.Serialize(logDetail));
         return Task.CompletedTask;
     }
 

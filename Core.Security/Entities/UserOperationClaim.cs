@@ -1,7 +1,7 @@
 ﻿using Core.Persistence.Repositories;
 
 namespace Core.Security.Entities;
-public class UserOperationClaim: Entity<Guid>
+public class UserOperationClaim : Entity<Guid>
 {
     public Guid UserId { get; set; }
     public virtual User User { get; set; }

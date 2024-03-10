@@ -3,7 +3,6 @@ using Core.CrossCuttingConcerns.Serilog.Messages;
 using Microsoft.Extensions.Configuration;
 using Serilog;
 using Serilog.Sinks.MSSqlServer;
-using System.Configuration;
 
 namespace Core.CrossCuttingConcerns.Serilog.Loggers;
 public class MsSqlLogger : LoggerServiceBase
@@ -31,7 +30,7 @@ public class MsSqlLogger : LoggerServiceBase
             .CreateLogger();
 
         Logger = seriLogConfig;
-          
+
     }
 
 }
