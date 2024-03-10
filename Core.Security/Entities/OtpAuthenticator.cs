@@ -7,14 +7,14 @@ public class OtpAuthenticator : Entity<Guid>
     public byte[] Secret { get; set; }
     public bool IsVerified { get; set; }
 
-    public virtual User User { get; set; } = null!; 
+    public virtual User User { get; set; } = null!;
 
     public OtpAuthenticator()
     {
         Secret = Array.Empty<byte>();
     }
 
-    public OtpAuthenticator(Guid userId, byte[] secret,bool isVerified)
+    public OtpAuthenticator(Guid userId, byte[] secret, bool isVerified)
     {
         UserId = userId;
         Secret = secret;
